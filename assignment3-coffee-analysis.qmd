@@ -1,0 +1,16 @@
+---
+title: "Comparative Analysis of Coffee Habits Between Remote and In-Person Workers"
+format: 
+  pdf:
+    toc: true
+---
+
+## Executive Summary
+
+## Introduction
+
+## Methodology
+
+## Results
+
+## Conclusion
