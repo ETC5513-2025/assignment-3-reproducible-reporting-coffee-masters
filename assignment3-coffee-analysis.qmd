@@ -11,6 +11,71 @@ format:
 
 ## Methodology
 
+```{r}
+library(ggplot2)
+library(readr)
+library(tidyverse)
+library(patchwork)
+```
+
+```{r}
+coffee_survey <- read_csv(here::here("data/coffee_survey.csv"))
+
+coffee_survey_selected <- coffee_survey %>%
+  select("submission_id", "wfh", "cups", "total_spend", "most_paid")
+```
+
+```{r}
+
+cup_sum <- coffee_survey_selected %>%
+  filter(!is.na(cups), !is.na(wfh)) %>%
+  count(cups, wfh) %>%
+  mutate(cups = factor(cups, levels = c("Less than 1", "1", "2", "3", "4", "More than 4")))
+
+p1 <- cup_sum %>%
+  ggplot(aes(x = cups, y = n, fill = wfh)) + 
+  geom_col(position = "dodge", width = 0.6) + 
+  labs(title = "Cups of coffee per day", x = "Cups", y = "Number of people", fill = "Work Mode") + 
+  theme_minimal()
+
+total_spend_sum <- coffee_survey_selected %>%
+  filter(!is.na(total_spend), !is.na(wfh)) %>%
+  count(total_spend, wfh) %>%
+  mutate(total_spend = factor(total_spend, levels = c("<$20", "$20-$40", "$40-$60", "$60-$80", "$80-$100", ">$100")))
+
+p2 <- total_spend_sum %>%
+  ggplot(aes(x = total_spend, y = n, fill = wfh)) + 
+  geom_col(position = "dodge", width = 0.6) + 
+  labs(title = "Money spent on coffee per month", x = "Spending Range", y = "Number of People", fill = "Work Mode") + 
+  theme_minimal()
+
+most_paid_sum <- coffee_survey_selected %>%
+  filter(!is.na(most_paid), !is.na(wfh)) %>%
+  count(most_paid, wfh) %>%
+  mutate(most_paid = factor(most_paid, levels = c("Less than $2", "$2-$4", "$4-$6", "$6-$8", "$8-$10", "$10-$15", "$15-$20", "More than $20")))
+
+p3 <- most_paid_sum %>%
+  ggplot(aes(x = most_paid, y = n, fill = wfh)) + 
+  geom_col(position = "dodge", width = 0.6) + 
+  labs(title = "Maximum Price Paid for a Cup of Coffee", x = "Spending Range", y = "Number of People", fill = "Work Mode") +
+  theme_minimal()
+
+```
+
+```{r}
+
+p1 <- p1 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p2 <- p2 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+p3 <- p3 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+combined <- (p1 | p2) / (p3 | patchwork::plot_spacer()) 
+combined
+
+```
+从以上的图可以看出，在家办公的人和在公司办公的人对于咖啡价格的偏好其实是相似的
+
+
+
 ## Results
 
 ## Conclusion
