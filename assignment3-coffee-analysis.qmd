@@ -187,5 +187,10 @@ results_table <- results_df %>%
 results_table
 ```
 
-In addition, the relationship between work arrangements and consumption levels was tested by chi-square test. From @table2, the results show that the correlation between the two is statistically significant. However, since the value of Cramer's V is less than 0.1, indicating a negligible association, its practical significance is limited. Therefore, the survey results cannot be generalized, and a larger dataset is required for further testing.
+In addition, the relationship between work arrangements and consumption levels was tested by chi-square test. From @table2, the results show that the correlation between the two is statistically significant. However, since the value of Cramer's V is less than 0.1, indicating a negligible association, its practical significance is limited. Therefore, the survey results cannot be generalized, and the more variables are required for further testing.
 ## Conclusion
+### Conclusin
+Overall, the research show that more and more people choose to work from home, which indirectly increases the daily consumption of coffee. Statistically, even if there is a significant difference between the work environment and the coffee consumption pattern, the practical significance is limited and further research is needed.
+### Recommendations
+1. Implement health education initiatives to raise awareness about the potential risks of excessive coffee consumption and to encourage healthier consumption patterns. For example, the company could offer alternative beverages such as tea and herbal infusions.
+2. Expand the dataset by incorporating additional relevant variables, such as age, income level and son on to conduct qualitative analysis and explore the driving factors of their behavior.
