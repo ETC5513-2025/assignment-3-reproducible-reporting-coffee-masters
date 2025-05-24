@@ -111,4 +111,81 @@ library(ggplot2)
 library(gt)
 library(rcompanion)
 ```
+```{r}
+#| label: table2
+coffee_data <- clean_data%>%
+  mutate(
+    work_setting = case_when(
+      wfh == "I primarily work from home" ~ "Remote",
+      wfh == "I primarily work in person" ~ "Office",
+      wfh == "I do a mix of both" ~ "Hybrid",
+      TRUE ~ NA_character_
+    ),
+    spend_tier = factor(
+      case_when(
+        total_spend %in% c("Less than $20", "<$20") ~ "<$20",
+        total_spend %in% c("$20-$40") ~ "$20-$40",
+        total_spend %in% c("$40-$60") ~ "$40-$60",
+        total_spend %in% c("$60-$80") ~ "$60-$80",
+        total_spend %in% c("$80-$100") ~ "$80-$100",
+        total_spend %in% c("More than $100", ">$100") ~ ">$100",
+        TRUE ~ NA_character_
+      ),
+      levels = c("<$20", "$20-$40", "$40-$60", "$60-$80", "$80-$100", ">$100"),
+      ordered = TRUE
+    )
+  ) %>%
+  filter(!is.na(work_setting), !is.na(spend_tier))
+
+contingency_table <- table(coffee_data$work_setting, coffee_data$spend_tier)
+
+chi_test <- chisq.test(contingency_table)
+cramer_v <- cramerV(contingency_table)
+
+results_df <- tibble(
+  `Test Statistic` = c(
+    "Chi-square (χ²)", 
+    "Degrees of Freedom (df)", 
+    "p-value", 
+    "Cramer's V (Effect Size)"
+  ),
+  Value = c(
+    chi_test$statistic,
+    chi_test$parameter,
+    chi_test$p.value,
+    cramer_v
+  )
+)
+
+results_table <- results_df %>%
+  gt() %>%
+  tab_header(
+    title = md("**Table 2: Chi-square Test Results (Work Setting vs. Spending Tier)**"),
+    subtitle = "Analysis based on N=1000 survey samples"
+  ) %>%
+  fmt_number(
+    columns = Value,
+    rows = 1:4,
+    decimals = 3
+  ) %>%
+  tab_footnote(
+    footnote = "Significance threshold α = 0.05",
+    locations = cells_body(columns = Value, rows = 3)
+  ) %>%
+  tab_footnote(
+    footnote = "Cramer's V interpretation: 0.1=small, 0.3=medium, 0.5=large effect",
+    locations = cells_body(columns = Value, rows = 4)
+  ) %>%
+  tab_options(
+    table.font.names = "Times New Roman",
+    heading.title.font.size = 14,
+    table.width = "80%"
+  ) %>%
+  cols_align(align = "center") 
+
+# Display table
+results_table
+```
+
+In addition, the relationship between work arrangements and consumption levels was tested by chi-square test. From @table2, the results show that the correlation between the two is statistically significant. However, since the value of Cramer's V is less than 0.1, indicating a negligible association, its practical significance is limited. Therefore, the survey results cannot be generalized, and a larger dataset is required for further testing.
 ## Conclusion
