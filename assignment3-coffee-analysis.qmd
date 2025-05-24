@@ -11,7 +11,10 @@ format:
 
 ## Methodology
 
-```{r}
+The survey categorizes respondents into three groups: those who work from home, those who work in an office, and those with a hybrid work arrangement. Using a questionnaire format, the survey focuses on participants’ coffee consumption habits. 
+
+```{r echo=FALSE}
+#| warning: false
 library(ggplot2)
 library(readr)
 library(tidyverse)
@@ -19,15 +22,23 @@ library(patchwork)
 library(knitr)
 ```
 
-```{r}
+```{r echo=FALSE}
+#| message: false
+#| warning: false
 coffee_survey <- read_csv(here::here("data/coffee_survey.csv"))
 
 coffee_survey_selected <- coffee_survey %>%
-  select("submission_id", "wfh", "cups", "total_spend", "most_paid")
+  select("submission_id", "wfh", "cups", "total_spend", "most_paid") %>%
+  mutate(wfh = recode(wfh, "I do a mix of both" = "both", 
+                      "I primarily work from home" = "remote", 
+                      "I primarily work in person" = "in_person"))
+
 ```
 
-```{r}
-#| label: table1
+```{r, echo=FALSE}
+#| label: tbl-coffee
+#| tbl-cap: "Proportion of Participants by Work Mode"
+
 work_mode_summary <- coffee_survey_selected %>%
   filter(!is.na(wfh)) %>%
   count(wfh) %>%
@@ -35,16 +46,15 @@ work_mode_summary <- coffee_survey_selected %>%
          proportion = scales::percent(n/sum(n))) %>%
   select(work_mode, n, proportion)
   
-work_mode_summary %>%
-  kable(caption = "Table 1: Proportion of Participants by Work Mode") 
-
+knitr::kable(work_mode_summary)
 
 ```
 
-According to table @table1, we can see that among the survey participants, those who work from home make up a significantly larger portion, accounting for 45.2% of the total. Those who work only in the office represent 29.8%, which is 4.7% more than those with a hybrid work arrangement.
+ @tbl-coffee is used to show the number of people in each group, and calculate the percentage of them within the total sample. So that we can compare the proportion of different groups. 
 
-```{r}
-#| label: figure1
+```{r, echo=FALSE}
+
+
 cup_sum <- coffee_survey_selected %>%
   filter(!is.na(cups), !is.na(wfh)) %>%
   count(cups, wfh) %>%
@@ -80,24 +90,25 @@ p3 <- most_paid_sum %>%
 
 ```
 
-```{r}
+```{r, echo=FALSE, out.width="80%"}
+#| label: fig-coffee
+#| fig-cap: "Research results"
 
 p1 <- p1 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 p2 <- p2 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 p3 <- p3 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 combined <- (p1 | p2) / (p3 | patchwork::plot_spacer()) 
-combined
+
+ggsave("combined_plot.png", combined, width = 14, height = 10)
+
+knitr::include_graphics("combined_plot.png")
 
 ```
 
-Figure @figure1 illustrates that the coffee price preferences of people working from home and those working in the office are generally similar.
+According to @fig-coffee , we can make comparisons across the three groups, showing their daily coffee consumption, monthly coffee spending, and the maximum price paid for a cup of coffee. This allows us to observe respondents’ preferences and behavior regarding coffee consumption. Building on these insights, we can further apply cluster analysis to categorize consumers into different types, which helps us draw more conclusions.
 
-In terms of daily consumption, individuals who drink two cups per day make up the largest proportion in both groups. However, people working from home tend to consume more coffee on average than those who work in the office.
 
-Most respondents spend \$20–50 per month on coffee, with a higher proportion among remote workers. Very few people spend less than \$20 or more than \$100 per month, regardless of work setting.
-
-When it comes to the maximum price paid for a single cup, the majority fall within the \$6–15 range, especially between \$6 and \$8.
 
 ## Results
 
