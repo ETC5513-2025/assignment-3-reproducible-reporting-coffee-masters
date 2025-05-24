@@ -100,5 +100,15 @@ Most respondents spend \$20–50 per month on coffee, with a higher proportion a
 When it comes to the maximum price paid for a single cup, the majority fall within the \$6–15 range, especially between \$6 and \$8.
 
 ## Results
-
+From @figure1, it shows significant differences about daily coffee consumption patterns for different work arrangements, suggesting that the work environment may affect coffee intake, and remote workers may be more dependent on coffee due to factors such as flexible working hours or reduced social interactions.
+```{r}
+clean_data <- coffee_survey_selected %>%
+  drop_na()
+install.packages("gt")
+install.packages("rcompanion")
+library(tidyverse)
+library(ggplot2)
+library(gt)
+library(rcompanion)
+```
 ## Conclusion
