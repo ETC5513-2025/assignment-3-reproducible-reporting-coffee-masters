@@ -7,6 +7,11 @@ format:
 
 ## Executive Summary
 
+- This analysis of 4,000 coffee consumers reveals that remote workers consume more coffee and spend more monthly compared to office workers, despite similar price preferences for individual cups.
+- Both groups predominantly drink two cups daily and spend \$20-50 monthly, with most paying \$6-15 per cup, but remote workers show higher proportions in consumption and spending categories.
+- The findings suggest remote workers have developed a stronger reliance on coffee, representing a significant market segment with both high intake and spending behaviors.
+- To address potential health risks and better understand consumption drivers, the study recommends promoting healthier consumption awareness and expanding research with additional variables and qualitative analysis.
+
 ## Introduction
 
 ## Methodology
