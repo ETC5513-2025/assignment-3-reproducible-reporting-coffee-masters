@@ -104,12 +104,13 @@ When it comes to the maximum price paid for a single cup, the majority fall with
 @tbl-coffee shows that among the survey participants, the proportion of people working from home is significant, reaching 45.2%. From @fig-coffee, it shows that the preferences for coffee prices are roughly the same for different working methods, and people who drink two cups of coffee a day also account for the highest proportion in both groups. However, the average coffee consumption of people working from home tends to be higher than that of people working in the office. Most respondents spend \$20 to \$50 on coffee per month. Regardless of the working environment, there are few people who spend less than \$20 or more than \$100 per month.
 
 ```{r setup}
-#| include: false
+#| label: library
 library(cluster)
 library(factoextra)
 ```
 
 ```{r}
+#| label: cluster-analysis
 clean_data <- coffee_survey_selected %>%
   drop_na()
 wfh_data <- clean_data %>%
