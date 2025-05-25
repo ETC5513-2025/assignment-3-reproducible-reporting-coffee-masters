@@ -7,7 +7,7 @@ author:
   email: syan0187@student.monash.edu
 - name: Jay Ashok Chauhan
   email: jcha0338@student.monash.edu
-organization: 
+organization: ETC-5513 Reproducible and Collaborative Practices
 format: 
   report-pdf:
     toc: true
