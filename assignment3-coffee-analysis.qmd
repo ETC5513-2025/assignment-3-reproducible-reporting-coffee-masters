@@ -3,6 +3,9 @@ title: "Comparative Analysis of Coffee Habits Between Remote and In-Person Worke
 format: 
   pdf:
     toc: true
+execute: 
+  warning: false
+  error: false
 ---
 
 ## Executive Summary
@@ -13,8 +16,9 @@ format:
 
 The survey categorizes respondents into three groups: those who work from home, those who work in an office, and those with a hybrid work arrangement. Using a questionnaire format, the survey focuses on participants’ coffee consumption habits. 
 
-```{r echo=FALSE}
-#| warning: false
+```{r}
+#| label: library-packages
+
 library(ggplot2)
 library(readr)
 library(tidyverse)
@@ -22,9 +26,9 @@ library(patchwork)
 library(knitr)
 ```
 
-```{r echo=FALSE}
-#| message: false
-#| warning: false
+```{r}
+#| label: read-file
+
 coffee_survey <- read_csv(here::here("data/coffee_survey.csv"))
 
 coffee_survey_selected <- coffee_survey %>%
@@ -35,7 +39,7 @@ coffee_survey_selected <- coffee_survey %>%
 
 ```
 
-```{r, echo=FALSE}
+```{r}
 #| label: tbl-coffee
 #| tbl-cap: "Proportion of Participants by Work Mode"
 
@@ -52,45 +56,63 @@ knitr::kable(work_mode_summary)
 
  @tbl-coffee is used to show the number of people in each group, and calculate the percentage of them within the total sample. So that we can compare the proportion of different groups. 
 
-```{r, echo=FALSE}
-
+```{r}
+#| label: draw-bar-charts
 
 cup_sum <- coffee_survey_selected %>%
   filter(!is.na(cups), !is.na(wfh)) %>%
   count(cups, wfh) %>%
-  mutate(cups = factor(cups, levels = c("Less than 1", "1", "2", "3", "4", "More than 4")))
+  mutate(cups = factor(
+    cups, 
+    levels = c("Less than 1", "1", "2", "3", "4", "More than 4"))
+    )
 
 p1 <- cup_sum %>%
   ggplot(aes(x = cups, y = n, fill = wfh)) + 
   geom_col(position = "dodge", width = 0.6) + 
-  labs(title = "Cups of coffee per day", x = "Cups", y = "Number of people", fill = "Work Mode") + 
+  labs(
+    title = "Cups of coffee per day", 
+    x = "Cups", 
+    y = "Number of people", 
+    fill = "Work Mode") + 
   theme_minimal()
 
 total_spend_sum <- coffee_survey_selected %>%
   filter(!is.na(total_spend), !is.na(wfh)) %>%
   count(total_spend, wfh) %>%
-  mutate(total_spend = factor(total_spend, levels = c("<$20", "$20-$40", "$40-$60", "$60-$80", "$80-$100", ">$100")))
+  mutate(total_spend = factor(
+    total_spend, levels = c(
+      "<$20", "$20-$40", "$40-$60", "$60-$80", "$80-$100", ">$100"))
+    )
 
 p2 <- total_spend_sum %>%
   ggplot(aes(x = total_spend, y = n, fill = wfh)) + 
   geom_col(position = "dodge", width = 0.6) + 
-  labs(title = "Money spent on coffee per month", x = "Spending Range", y = "Number of People", fill = "Work Mode") + 
+  labs(
+    title = "Money spent on coffee per month", 
+    x = "Spending Range", y = "Number of People", fill = "Work Mode"
+    ) + 
   theme_minimal()
 
 most_paid_sum <- coffee_survey_selected %>%
   filter(!is.na(most_paid), !is.na(wfh)) %>%
   count(most_paid, wfh) %>%
-  mutate(most_paid = factor(most_paid, levels = c("Less than $2", "$2-$4", "$4-$6", "$6-$8", "$8-$10", "$10-$15", "$15-$20", "More than $20")))
+  mutate(most_paid = factor(most_paid, levels = c(
+    "Less than $2", "$2-$4", "$4-$6", "$6-$8", "$8-$10", 
+    "$10-$15", "$15-$20", "More than $20"))
+    )
 
 p3 <- most_paid_sum %>%
   ggplot(aes(x = most_paid, y = n, fill = wfh)) + 
   geom_col(position = "dodge", width = 0.6) + 
-  labs(title = "Maximum Price Paid for a Cup of Coffee", x = "Spending Range", y = "Number of People", fill = "Work Mode") +
+  labs(title = "Maximum Price Paid for a Cup of Coffee", 
+       x = "Spending Range", y = "Number of People", fill = "Work Mode"
+       ) +
   theme_minimal()
 
 ```
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, out.width="80%"}
 #| label: fig-coffee
 #| fig-cap: "Research results"
 
