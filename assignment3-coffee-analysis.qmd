@@ -1,12 +1,22 @@
 ---
 title: "Comparative Analysis of Coffee Habits Between Remote and In-Person Workers"
+author:
+- name: Lixin Zhang
+  email: lzha0258@student.monash.edu
+- name: Siwen Yang
+  email: syan0187@student.monash.edu
+- name: Jay Ashok Chauhan
+  email: jcha0338@student.monash.edu
+organization: 
 format: 
-  pdf:
+  report-pdf:
     toc: true
 bibliography: references.bib
 execute: 
   warning: false
   error: false
+nocite: |
+  @*
 ---
 
 ## Executive Summary
