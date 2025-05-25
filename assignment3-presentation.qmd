@@ -1,0 +1,31 @@
+---
+title: "Analysis of Coffee Habits between Remote and In-person Workers"
+author: 
+- name: Lixin Zhang
+- name: Siwen Yang
+- name: Jay Ashok Chauhan
+toc: true
+format:
+  presentation-beamer: default
+  presentation-revealjs+letterbox: default
+---
+
+## Introduction
+
+Introduction here
+
+## Dataset Description
+
+Dataset here
+
+## Methods
+
+Methods here
+
+## Results
+
+Results here
+
+## Conclusions
+
+Discussion here
