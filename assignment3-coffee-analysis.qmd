@@ -164,7 +164,7 @@ clean_data <- coffee_survey_selected %>%
   drop_na()
 wfh_data <- clean_data %>%
   mutate(
-    cups_numeric = case_when(
+    cups = case_when(
       cups == "Less than 1" ~ 0.5,
       cups == "1" ~ 1,
       cups == "2" ~ 2,
@@ -173,7 +173,7 @@ wfh_data <- clean_data %>%
       cups == "More than 4" ~ 5,
       TRUE ~ as.numeric(NA)
     ),
-    total_spend_numeric = case_when(
+    'total spend' = case_when(
       total_spend == "<$20" ~ 10,
       total_spend == "$20-$40" ~ 30,
       total_spend == "$40-$60" ~ 50,
@@ -185,7 +185,7 @@ wfh_data <- clean_data %>%
   ) %>%
   filter(wfh == "remote")
 wfh_cluster_data <- wfh_data %>%
-  select(cups_numeric, total_spend_numeric) %>%
+  select(cups, 'total spend') %>%
   na.omit() %>%
   scale()
 set.seed(123)
