@@ -137,4 +137,75 @@ According to @fig-coffee , we can make comparisons across the three groups, show
 
 ## Results
 
+@tbl-coffee shows that among the survey participants, the proportion of people working from home is significant, reaching 45.2%. From @fig-coffee, it shows that the preferences for coffee prices are roughly the same for different working methods, and people who drink two cups of coffee a day also account for the highest proportion in both groups. However, the average coffee consumption of people working from home tends to be higher than that of people working in the office. Most respondents spend \$20 to \$50 on coffee per month. Regardless of the working environment, there are few people who spend less than \$20 or more than \$100 per month.
+
+```{r setup}
+#| label: library
+library(cluster)
+library(factoextra)
+```
+
+```{r}
+#| label: cluster-analysis
+clean_data <- coffee_survey_selected %>%
+  drop_na()
+wfh_data <- clean_data %>%
+  mutate(
+    cups_numeric = case_when(
+      cups == "Less than 1" ~ 0.5,
+      cups == "1" ~ 1,
+      cups == "2" ~ 2,
+      cups == "3" ~ 3,
+      cups == "4" ~ 4,
+      cups == "More than 4" ~ 5,
+      TRUE ~ as.numeric(NA)
+    ),
+    total_spend_numeric = case_when(
+      total_spend == "<$20" ~ 10,
+      total_spend == "$20-$40" ~ 30,
+      total_spend == "$40-$60" ~ 50,
+      total_spend == "$60-$80" ~ 70,
+      total_spend == "$80-$100" ~ 90,
+      total_spend == ">$100" ~ 110,
+      TRUE ~ as.numeric(NA)
+    )
+  ) %>%
+  filter(wfh == "remote")
+wfh_cluster_data <- wfh_data %>%
+  select(cups_numeric, total_spend_numeric) %>%
+  na.omit() %>%
+  scale()
+set.seed(123)
+wfh_kmeans <- kmeans(wfh_cluster_data, centers = 3, nstart = 25)
+```
+
+```{r}
+#| label: fig-wfh-cluster
+#| fig-cap: "Cluster Visualization: Work from Home Group"
+fviz_cluster(wfh_kmeans, data = wfh_cluster_data,
+             geom = "point",
+             ellipse.type = "convex",
+             ggtheme = theme_minimal(),
+             main = "Cluster Visualization: Work from Home Group")
+
+```
+
+Further research on the daily coffee intake and monthly consumption of people working from home can be divided into three groups: high consumption and high intake, low consumption, and conflicting groups. From @fig-wfh-cluster , it shows that nearly half of the people working from home are high consumption and high intake groups, indicating that this office style is more dependent on coffee and also pursues the quality of coffee.
+
 ## Conclusion
+
+### Discussion
+
+This study explores the relationship between work modes (working from home, working in person and hybrid working) and coffee consumption behaviors (daily intake, monthly expenditure and maximum expenditure). The results show that different groups have similar preferences in coffee consumption and price. However, the remote working group has relatively higher consumption, which also reflects differences in lifestyle, such as the convenience of brewing coffee for people working from home.
+
+Cluster analysis shows the coffee consumption behaviors of different groups about people working from home. High consumption accounting for the majority reflects requirements for coffee quality. However, due to limitations like accuracy, other relevant variables need to be introduced for in-depth investigation.
+
+### Conclusin
+
+Overall, the research finds that remote workers not only make up the largest proportion but also tend to consume more coffee and spend more on it monthly and most individuals drink two cups per day. Clustering of remote workers further highlights a substantial group characterized by both high coffee intake and high spending, suggesting a stronger reliance on and appreciation for coffee among those who work from home.
+
+### Recommendations
+
+1.  Implement health education initiatives to raise awareness about the potential risks of excessive coffee consumption and to encourage healthier consumption patterns. For example, the company could offer alternative beverages such as tea and herbal infusions.
+
+2.  Expand the dataset by incorporating additional relevant variables like age and income level, and conduct qualitative analysis to identify the driving factors of high coffee consumption behavior under the same office mode.
