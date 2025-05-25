@@ -11,6 +11,11 @@ execute:
 
 ## Executive Summary
 
+- This analysis of 4,000 coffee consumers reveals that remote workers consume more coffee and spend more monthly compared to office workers, despite similar price preferences for individual cups.
+- Both groups predominantly drink two cups daily and spend \$20-50 monthly, with most paying \$6-15 per cup, but remote workers show higher proportions in consumption and spending categories.
+- The findings suggest remote workers have developed a stronger reliance on coffee, representing a significant market segment with both high intake and spending behaviors.
+- To address potential health risks and better understand consumption drivers, the study recommends promoting healthier consumption awareness and expanding research with additional variables and qualitative analysis.
+
 ## Introduction
 
 According to @scanderBeverageConsumptionPatterns2018, coffee is the second highest consumed beverage in volume, after water, in the world. No wonder it plays a central role in daily routines of workers all over the world, influencing both productivity and spending habits. According to @smithCaffeineWork2005, caffeine consumption enhances alertness, shortens reaction time, and improves mental clarity in the workspace. The working model shift to remote and hybrid work become increasingly common and so does the coffee consumption patterns by the working people. In a survey dataset published by James Hoffman, a pioneer of third wave coffee movement and a World Champion Barista, along with a coffee company Cometeer held a survey of around 4000 individuals about four coffees and where coffee drinkers were asked about their demographics, coffee drinking habits, coffee taste preferences, and their spending habits, which according to @StateHybridWork could be approximately 25% of total spending in a working day! Through this survey data, this report explores how working location influences daily coffee consumption, monthly coffee spends, and consumer's willingness to splurge on premium brews. By comparing different behaviours we can provide insights into shift in consumer habits in the coffee industry.
@@ -131,9 +136,7 @@ knitr::include_graphics("combined_plot.png")
 
 ```
 
-According to @fig-coffee , we can make comparisons across the three groups, showing their daily coffee consumption, monthly coffee spending, and the maximum price paid for a cup of coffee. This allows us to observe respondents’ preferences and behavior regarding coffee consumption. Building on these insights, we can further apply cluster analysis to categorize consumers into different types, which helps us draw more conclusions.
-
-
+According to @fig-coffee , we can make comparisons across the three groups, showing their daily coffee consumption, monthly coffee spending, and the maximum price paid for a cup of coffee. This allows us to observe respondents’ preferences and behaviour regarding coffee consumption. Building on these insights, we can further apply cluster analysis to categorize consumers into different types, which helps us draw more conclusions.
 
 ## Results
 
@@ -196,11 +199,11 @@ Further research on the daily coffee intake and monthly consumption of people wo
 
 ### Discussion
 
-This study explores the relationship between work modes (working from home, working in person and hybrid working) and coffee consumption behaviors (daily intake, monthly expenditure and maximum expenditure). The results show that different groups have similar preferences in coffee consumption and price. However, the remote working group has relatively higher consumption, which also reflects differences in lifestyle, such as the convenience of brewing coffee for people working from home.
+This study explores the relationship between work modes (working from home, working in person and hybrid working) and coffee consumption behaviours (daily intake, monthly expenditure and maximum expenditure). The results show that different groups have similar preferences in coffee consumption and price. However, the remote working group has relatively higher consumption, which also reflects differences in lifestyle, such as the convenience of brewing coffee for people working from home.
 
-Cluster analysis shows the coffee consumption behaviors of different groups about people working from home. High consumption accounting for the majority reflects requirements for coffee quality. However, due to limitations like accuracy, other relevant variables need to be introduced for in-depth investigation.
+Cluster analysis shows the coffee consumption behaviours of different groups about people working from home. High consumption accounting for the majority reflects requirements for coffee quality. However, due to limitations like accuracy, other relevant variables need to be introduced for in-depth investigation.
 
-### Conclusin
+### Conclusion
 
 Overall, the research finds that remote workers not only make up the largest proportion but also tend to consume more coffee and spend more on it monthly and most individuals drink two cups per day. Clustering of remote workers further highlights a substantial group characterized by both high coffee intake and high spending, suggesting a stronger reliance on and appreciation for coffee among those who work from home.
 
@@ -208,4 +211,4 @@ Overall, the research finds that remote workers not only make up the largest pro
 
 1.  Implement health education initiatives to raise awareness about the potential risks of excessive coffee consumption and to encourage healthier consumption patterns. For example, the company could offer alternative beverages such as tea and herbal infusions.
 
-2.  Expand the dataset by incorporating additional relevant variables like age and income level, and conduct qualitative analysis to identify the driving factors of high coffee consumption behavior under the same office mode.
+2.  Expand the dataset by incorporating additional relevant variables like age and income level, and conduct qualitative analysis to identify the driving factors of high coffee consumption behaviour under the same office mode.
