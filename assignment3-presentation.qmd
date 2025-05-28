@@ -105,7 +105,7 @@ coffee |>
 ## Methods
 
 - **Grouping & Analysis**  
-  Make bar charts to show the number and proportion of participants in each work group.
+  Make a table to show the number and proportion of participants in each work group.
 
   Compare groups by daily consumption, monthly spending, highest paid price. 
 
