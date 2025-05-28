@@ -2,8 +2,8 @@
 
 Group Members:
 
-*
-*
-*
+* Lixin Zhang
+* Siwen Yang
+* Jay Ashok Chauhan
 
-Topic: 
+Topic: Comparative Analysis of Coffee Habits Between Remote and In-Person Workers
