@@ -24,8 +24,50 @@ Methods here
 
 ## Results
 
-Results here
+:::{.columns}
+::: {.column width="50%"}
+::: {.figure-caption width="100%"}
+![Figure 1: Coffee Consumption and Spending Patterns](combined_plot.png)
+:::
+
+:::
+::: {.column width="50%" style="font-size:50%;"}
+
+- Different work modes have similar preferences  
+  for coffee price  
+- People who drink two cups of coffee a day  
+  account for the highest proportion in all groups  
+- The average coffee consumption of remote  
+  working groups tends to be the highest  
+
+:::
+:::
+
+## Results
+
+:::{.columns}
+::: {.column width="50%"}
+::: {.figure-caption width="100%"}
+![Figure 2: Cluster Visualization: Work from Home Group](cluster analysis.png)
+:::
+
+:::
+::: {.column width="50%" style="font-size:60%;"}
+
+Work from Home Group 
+
+- **High Consumption and High Intake** 
+- Low Consumption  
+- Conflicting Groups  
+
+:::
+:::
 
 ## Conclusions
 
-Discussion here
+-   Conclusion
+    -   Remote working group has relatively high consumption.
+    -   Cluster Analysis: High Coffee Intake & High Speeding
+-   Recommendation
+    -   Health Awareness & Alternative Promotion
+    -   Further Date-Driven Consumption Analysis
