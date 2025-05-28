@@ -12,11 +12,73 @@ format:
 
 ## Introduction
 
-Introduction here
+- Coffee = 2nd most consumed beverage globally after water (Scander et al., 2018)
+
+- Boosts productivity: alertness, clarity, and reaction time (Smith, 2005)
+
+- Shift to remote & hybrid work is transforming coffee routines
+
+- Up to 25% of a worker’s daily spending may go to coffee (State of Hybrid Work, 2025)
 
 ## Dataset Description
 
-Dataset here
+```{r}
+#| label: read-coffee-dataset
+#| echo: false
+#| warning: false
+#| error: false
+
+library(tidyverse)
+library(knitr)
+
+coffee <- read_csv(here::here("data/coffee_survey.csv"))
+```
+
+
+:::: {.columns}
+
+::: {.column width = "60%"}
+
+- Created by James Hoffmann (World Champion Barista) & Cometeer
+
+- `r nrow(coffee)` participants: U.S. coffee drinkers
+
+- Surveyed on `r ncol(coffee)` variables:
+
+  - Demographics & work location
+
+  - Daily intake & brew methods
+
+  - Taste preferences
+
+  - Spending habits
+  
+::: 
+
+::: {.column width = "40%"}
+
+![](images/presentation/james-hoffman.jpg){.nostretch fig-align="center"}
+
+![](images/presentation/cometeer-logo.jpg){.nostretch fig-align="center"}
+
+:::
+::::
+
+## Dataset Description {.smaller}
+
+```{r}
+#| label: tbl-coffee-dataset
+#| tbl-cap: "The Great American Coffee Taste Test Data"
+#| tbl-cap-location: bottom
+#| echo: false
+#| warning: false
+#| error: false
+
+coffee |>
+  head() |>
+  kable()
+```
+
 
 ## Methods
 
