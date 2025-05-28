@@ -80,9 +80,43 @@ coffee |>
 ```
 
 
+------------------------------------------------------------------------
+
 ## Methods
 
-Methods here
+**Respondents are grouped into:**
+
+-   Work from home
+
+-   Work in office
+
+-   Hybrid work
+
+**Survey focused on:**
+
+-   Daily coffee consumption
+
+-   Monthly coffee spending
+
+-   Highest price paid for one cup
+
+------------------------------------------------------------------------
+
+## Methods
+
+- **Overview of the Survey**  
+  The data is from a research online held by James Hoffmann and coffee company 
+  Cometeer. 
+
+- **Grouping & Analysis**  
+  Table 1 Shows the number and proportion of participants in each work group.
+
+  Figure 1 Compares groups by daily consumption, monthly spending, highest paid price
+
+- **Further Analysis**  
+
+
+------------------------------------------------------------------------
 
 ## Results
 
