@@ -84,37 +84,33 @@ coffee |>
 
 ## Methods
 
-**Respondents are grouped into:**
+**Respondents are grouped(`wfh`) into:**
 
--   Work from home
+-   Work from home(`remote`)
 
--   Work in office
+-   Work in office(`in_person`)
 
--   Hybrid work
+-   Hybrid work(`both`)
 
-**Survey focused on:**
+**Our analysis focused on:**
 
--   Daily coffee consumption
+-   Daily coffee consumption(`cups`)
 
--   Monthly coffee spending
+-   Monthly coffee spending(`total_spend`)
 
--   Highest price paid for one cup
+-   Highest price paid for one cup(`most_paid`)
 
 ------------------------------------------------------------------------
 
 ## Methods
 
-- **Overview of the Survey**  
-  The data is from a research online held by James Hoffmann and coffee company 
-  Cometeer. 
-
 - **Grouping & Analysis**  
-  Table 1 Shows the number and proportion of participants in each work group.
+  Make bar charts to show the number and proportion of participants in each work group.
 
-  Figure 1 Compares groups by daily consumption, monthly spending, highest paid price
+  Compare groups by daily consumption, monthly spending, highest paid price. 
 
 - **Further Analysis**  
-
+  Based on the observed behavior, cluster analysis is proposed to classify consumers into distinct preference types, offering deeper insights.
 
 ------------------------------------------------------------------------
 
