@@ -6,7 +6,6 @@ author:
 - name: Jay Ashok Chauhan
 toc: true
 format:
-  presentation-beamer: default
   presentation-revealjs+letterbox: default
 ---
 
