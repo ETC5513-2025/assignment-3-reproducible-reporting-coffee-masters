@@ -11,6 +11,8 @@ format:
 
 ## Introduction
 
+::: {.incremental}
+
 - Coffee = 2nd most consumed beverage globally after water (Scander et al., 2018)
 
 - Boosts productivity: alertness, clarity, and reaction time (Smith, 2005)
@@ -18,6 +20,8 @@ format:
 - Shift to remote & hybrid work is transforming coffee routines
 
 - Up to 25% of a worker’s daily spending may go to coffee (State of Hybrid Work, 2025)
+
+:::
 
 ## Dataset Description
 
