@@ -23,7 +23,7 @@ format:
 
 :::
 
-## Dataset Description
+## Dataset Description {.smaller}
 
 ```{r}
 #| label: read-coffee-dataset
@@ -41,6 +41,7 @@ coffee <- read_csv(here::here("data/coffee_survey.csv"))
 :::: {.columns}
 
 ::: {.column width = "60%"}
+**Our Question**: - *How does work location (remote vs. in-person) affect daily coffee consumption, total monthly spend, and what is the most you’ve ever paid for?*
 
 - Created by *James Hoffmann* (World Champion Barista) & *Cometeer*
 
@@ -55,7 +56,6 @@ coffee <- read_csv(here::here("data/coffee_survey.csv"))
   - Taste preferences
 
   - Spending habits
-  
 ::: 
 
 ::: {.column width = "40%"}
@@ -72,7 +72,7 @@ coffee <- read_csv(here::here("data/coffee_survey.csv"))
 ```{r}
 #| label: tbl-coffee-dataset
 #| tbl-cap: "The Great American Coffee Taste Test Data"
-#| tbl-cap-location: bottom
+#| tbl-cap-location: top
 #| echo: false
 #| warning: false
 #| error: false
@@ -121,7 +121,7 @@ coffee |>
 
 :::{.columns}
 ::: {.column width="50%"}
-::: {.figure-caption width="100%"}
+::: {.figure-caption width="50%"}
 ![Figure 1: Coffee Consumption and Spending Patterns](combined_plot.png)
 :::
 
@@ -142,7 +142,7 @@ coffee |>
 
 :::{.columns}
 ::: {.column width="50%"}
-::: {.figure-caption width="100%"}
+::: {.figure-caption width="50%"}
 ![Figure 2: Cluster Visualization: Work from Home Group](cluster analysis.png)
 :::
 
