@@ -42,7 +42,7 @@ coffee <- read_csv(here::here("data/coffee_survey.csv"))
 
 ::: {.column width = "60%"}
 
-- Created by James Hoffmann (World Champion Barista) & Cometeer
+- Created by *James Hoffmann* (World Champion Barista) & *Cometeer*
 
 - `r nrow(coffee)` participants: U.S. coffee drinkers
 
@@ -113,7 +113,7 @@ coffee |>
   Compare groups by daily consumption, monthly spending, highest paid price. 
 
 - **Further Analysis**  
-  Based on the observed behavior, cluster analysis is proposed to classify consumers into distinct preference types, offering deeper insights.
+  Based on the observed behaviour, cluster analysis is proposed to classify consumers into distinct preference types, offering deeper insights.
 
 ------------------------------------------------------------------------
 
@@ -149,20 +149,20 @@ coffee |>
 :::
 ::: {.column width="50%" style="font-size:60%;"}
 
-Work from Home Group 
+**Work from Home Group**
 
-- **High Consumption and High Intake** 
-- Low Consumption  
-- Conflicting Groups  
+- *High Consumption and High Intake*
+- *Low Consumption*  
+- *Conflicting Groups*  
 
 :::
 :::
 
 ## Conclusions
 
--   Conclusion
+-   **Conclusion**
     -   Remote working group has relatively high consumption.
     -   Cluster Analysis: High Coffee Intake & High Speeding
--   Recommendation
+-   **Recommendation**
     -   Health Awareness & Alternative Promotion
     -   Further Date-Driven Consumption Analysis
