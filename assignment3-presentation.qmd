@@ -71,14 +71,25 @@ coffee <- read_csv(here::here("data/coffee_survey.csv"))
 
 ```{r}
 #| label: tbl-coffee-dataset
-#| tbl-cap: "The Great American Coffee Taste Test Data"
-#| tbl-cap-location: top
+#| tbl-cap: "The Great American Coffee Taste Test Sample Data"
+#| tbl-cap-location: bottom
 #| echo: false
 #| warning: false
 #| error: false
 
-coffee |>
-  head() |>
+coffee |> 
+  select("wfh", "cups", "total_spend", "most_paid") |>
+  rename(
+    `Work Location Type` = wfh,
+    `Number of cups per day` = cups,
+    `Total Monthly Spend` = total_spend,
+    `Most paid for a cup` = most_paid
+  ) |>
+  mutate(`Work Location Type` = recode(`Work Location Type`, "I do a mix of both" = "Hybrid", 
+                      "I primarily work from home" = "Remote", 
+                      "I primarily work in person" = "In Person")) |>
+  filter(!is.na(`Work Location Type`)) |>
+  head(10) |> 
   kable()
 ```
 
@@ -89,11 +100,11 @@ coffee |>
 
 **Respondents are grouped(`wfh`) into:**
 
--   Work from home(`remote`)
+-   Work from home(`Remote`)
 
--   Work in office(`in_person`)
+-   Work in office(`In Person`)
 
--   Hybrid work(`both`)
+-   Hybrid work(`Hybrid`)
 
 **Our analysis focused on:**
 
@@ -120,20 +131,24 @@ coffee |>
 ## Results
 
 :::{.columns}
-::: {.column width="50%"}
-::: {.figure-caption width="50%"}
-![Figure 1: Coffee Consumption and Spending Patterns](combined_plot.png)
+::: {.column width="33%"}
+![Cups of coffee per day](cups_per_day_plot.png){#fig-cups fig-alt="Bar chart of coffee cups" width="100%" style="font-size:70%;"}
+:::
+::: {.column width="33%"}
+![Money spent on coffee per month](max_paid_coffee_plot.png){#fig-monthly fig-alt="Bar chart of spending" width="100%" style="font-size:70%;"}
+:::
+::: {.column width="33%"}
+![Maximum Price Paid for a Cup of Coffee](max_paid_coffee_plot.png){#fig-paid fig-alt="Bar chart of price" width="100%" style="font-size:70%;"}
+:::
 :::
 
-:::
-::: {.column width="50%" style="font-size:50%;"}
 
-- Different work modes have similar preferences  
-  for coffee price  
-- People who drink two cups of coffee a day  
-  account for the highest proportion in all groups  
-- The average coffee consumption of remote  
-  working groups tends to be the highest  
+:::{.columns}
+::: {.column width="100%" style="font-size:60%; text-align:left;"}
+
+- Different work modes have similar preferences for coffee price
+- People who drink two cups of coffee a day account for the highest proportion in all groups  
+- The average coffee consumption of remote working groups tends to be the highest  
 
 :::
 :::
@@ -143,7 +158,7 @@ coffee |>
 :::{.columns}
 ::: {.column width="50%"}
 ::: {.figure-caption width="50%"}
-![Figure 2: Cluster Visualization: Work from Home Group](cluster analysis.png)
+![Cluster Visualization: Work from Home Group](cluster analysis.png){#fig-cluster fig-alt="Cluster chart of wfh group" width="100%" style="font-size:70%;"}
 :::
 
 :::

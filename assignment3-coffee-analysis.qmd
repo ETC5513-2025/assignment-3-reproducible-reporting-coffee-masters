@@ -51,9 +51,9 @@ coffee_survey <- read_csv(here::here("data/coffee_survey.csv"))
 
 coffee_survey_selected <- coffee_survey %>%
   select("submission_id", "wfh", "cups", "total_spend", "most_paid") %>%
-  mutate(wfh = recode(wfh, "I do a mix of both" = "both", 
-                      "I primarily work from home" = "remote", 
-                      "I primarily work in person" = "in_person"))
+  mutate(wfh = recode(wfh, "I do a mix of both" = "Hybrid", 
+                      "I primarily work from home" = "Remote", 
+                      "I primarily work in person" = "In Person"))
 
 ```
 
@@ -93,7 +93,7 @@ p1 <- cup_sum %>%
     x = "Cups", 
     y = "Number of people", 
     fill = "Work Mode") + 
-  theme_minimal()
+  theme_minimal(base_size = 14)
 
 total_spend_sum <- coffee_survey_selected %>%
   filter(!is.na(total_spend), !is.na(wfh)) %>%
@@ -110,7 +110,7 @@ p2 <- total_spend_sum %>%
     title = "Money spent on coffee per month", 
     x = "Spending Range", y = "Number of People", fill = "Work Mode"
     ) + 
-  theme_minimal()
+  theme_minimal(base_size = 14)
 
 most_paid_sum <- coffee_survey_selected %>%
   filter(!is.na(most_paid), !is.na(wfh)) %>%
@@ -126,7 +126,7 @@ p3 <- most_paid_sum %>%
   labs(title = "Maximum Price Paid for a Cup of Coffee", 
        x = "Spending Range", y = "Number of People", fill = "Work Mode"
        ) +
-  theme_minimal()
+  theme_minimal(base_size = 14)
 
 ```
 
@@ -140,6 +140,9 @@ p3 <- p3 + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 combined <- (p1 | p2) / (p3 | patchwork::plot_spacer()) 
 
+ggsave("cups_per_day_plot.png", p1, width = 14, height = 10)
+ggsave("spent_per_month_plot.png", p2, width = 14, height = 10)
+ggsave("max_paid_coffee_plot.png", p3, width = 14, height = 10)
 ggsave("combined_plot.png", combined, width = 14, height = 10)
 
 knitr::include_graphics("combined_plot.png")
@@ -183,7 +186,7 @@ wfh_data <- clean_data %>%
       TRUE ~ as.numeric(NA)
     )
   ) %>%
-  filter(wfh == "remote")
+  filter(wfh == "Remote")
 wfh_cluster_data <- wfh_data %>%
   select(cups, 'total spend') %>%
   na.omit() %>%
@@ -195,11 +198,21 @@ wfh_kmeans <- kmeans(wfh_cluster_data, centers = 3, nstart = 25)
 ```{r}
 #| label: fig-wfh-cluster
 #| fig-cap: "Cluster Visualization: Work from Home Group"
-fviz_cluster(wfh_kmeans, data = wfh_cluster_data,
-             geom = "point",
-             ellipse.type = "convex",
-             ggtheme = theme_minimal(),
-             main = "Cluster Visualization: Work from Home Group")
+remote_workers_coffee_cluster_plot <- fviz_cluster(
+  wfh_kmeans, 
+  data = wfh_cluster_data,
+  geom = "point",
+  ellipse.type = "convex",
+  ggtheme = theme_minimal(base_size = 14),
+  main = "Cluster Visualization: Work from Home Group") + 
+  labs(x = "Number of Cups", y = "Total Monthly Spend")
+
+ggsave(
+  "cluster analysis.png", 
+  remote_workers_coffee_cluster_plot, 
+  width = 14, height = 10)
+
+knitr::include_graphics("cluster analysis.png")
 
 ```
 
